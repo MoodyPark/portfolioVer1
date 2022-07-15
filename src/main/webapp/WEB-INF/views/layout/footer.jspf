@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<footer>
+	<div class="container">
+		<img alt="logo" src="${contextPath}/resources/img/logo.png" height="30px" width="30px">
+		<p>creative commons license </p>
+	</div>
+</footer>
+
+</body>
+</html>
