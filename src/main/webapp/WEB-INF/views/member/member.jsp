@@ -6,9 +6,15 @@
 <div class="container">
 	<sec:authentication property="principal.memberVO.userId" var="userId"/>
 	<h2>회원 페이지</h2>
-	<a href="${contextPath}/customLogout">로그아웃</a><br>
-	<a href="${contextPath}/anno/myPage/${userId}">내 정보 보기</a><br>
+	<br>
+	<button class="btn btn-danger" onclick="location.href='${contextPath}/customLogout'">로그아웃</button>
+	<button class="btn btn-success" onclick="location.href='${contextPath}/member/myPage/${userId}'">내 정보 보기</button>
 </div>
 
-<%@ include file="../layout/footer.jspf" %>
+<img alt="logo" src="${contextPath}/resources/img/son.jpg" height="400px" width="600px">
 
+<%@ include file="../layout/footer.jspf" %>
+<style>
+	.container {width: 400px; margin: auto;   transform : translateY(150px) }
+	footer{position:  absolute; bottom:0; width: 100%}
+</style>

@@ -72,7 +72,7 @@ public class BoardServiceImpl implements BoardService {
 	public int totalCount(Criteria criteria) {
 		return boardMapper.totalCount(criteria);
 	}
-
+	
 	@Override
 	public List<BoardAttachVO> getAttachList(Long bno) {
 		return attachMapper.findByBno(bno);

@@ -48,6 +48,12 @@ $(function(){
 		modalRegisterBtn.show()
 	})
 	
+	$('#getForm .remove').on('click', function(e){
+		e.preventDefault();
+		getForm.append($('#bno'));
+		
+	})
+	
 	// 댓글 등록 이벤트처리
 	modalRegisterBtn.on('click',function(){
 		let reply = {

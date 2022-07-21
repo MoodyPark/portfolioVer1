@@ -13,7 +13,7 @@
 	내용 : 
 	<textarea rows="" cols="" name="content">${board.content}</textarea><br>
 	작성자 : ${board.writer} <br> 
-	<button>수정하기</button>
+	<button  class="btn btn-primary">수정하기</button>
 </form>
 
 <div class="row my-5">

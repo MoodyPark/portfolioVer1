@@ -28,12 +28,7 @@ public class SecurityBean {
 	public PasswordEncoder bcryptPwEncoder() {
 		return new BCryptPasswordEncoder(); 
 	}
-	
-	@Bean
-	public PasswordEncoder nooPencoder() {
-		return new CustomNoopPasswordEncoder();
-	}
-	
+		
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository() {
 		JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();

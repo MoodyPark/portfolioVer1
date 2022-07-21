@@ -27,8 +27,6 @@ import me.light.service.ReplyServiceImpl;
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 @EnableScheduling
-//@ImportResource(value = { "classpath:config/security-context.xml" })
-//@Import(value = {SecurityConfig.class})
 public class RootConfig {
 	
 	@Bean

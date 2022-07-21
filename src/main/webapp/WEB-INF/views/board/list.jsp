@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -11,22 +10,23 @@
 		<input type="hidden" name="keyword" id="keyword" value="${pageMaker.criteria.keyword}">
 	</div>
 
-	<form action="${contextPath}/board/list" id="listForm">
-		<div>
-			<select name="type">
-				<option value="">===</option>
-				<option value="T" ${pageMaker.criteria.type eq 'T' ? 'selected':''}>제목</option>
-				<option value="C" ${pageMaker.criteria.type eq 'C' ? 'selected':''}>내용</option>
-				<option value="W" ${pageMaker.criteria.type eq 'W' ? 'selected':''}>작성자</option>
-			</select>
-			<input type="text" name="keyword" value="${pageMaker.criteria.keyword}">
-			<button>검색</button>
-		</div>
-	</form>
-	
+	<div class="d-flex justify-content-between">
+		<form action="${contextPath}/board/list" id="listForm">
+			<div class="bg-info">
+				<select name="type">
+					<option value="">===</option>
+					<option value="T" ${pageMaker.criteria.type eq 'T' ? 'selected':''}>제목</option>
+					<option value="C" ${pageMaker.criteria.type eq 'C' ? 'selected':''}>내용</option>
+					<option value="W" ${pageMaker.criteria.type eq 'W' ? 'selected':''}>작성자</option>
+				</select>
+				<input type="search" name="keyword" value="${pageMaker.criteria.keyword}">
+				<button class="btn btn-success">검색</button>
+			</div>
+		</form>
+		<button class="btn btn-warning" onclick="location.href='register'">글쓰기</button>
+	</div>
 	
 	<h2>자유게시판</h2>
-	<a href="register">글쓰기</a>
 	<table class="table">
 		<tr>
 			<th>번호</th>
@@ -68,19 +68,27 @@
 			</div>
 			</c:if>
 		</c:forEach>
+		
 	</div>
 	
-	<div class="pagination">
-		<c:if test="${pageMaker.prev }">
-			<a href="${pageMaker.startPage - 1}">[이전페이지]</a>
-		</c:if>
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-			<a href="${pageNum}" class="${pageMaker.criteria.page == pageNum ? 'on':''}">[${pageNum}]</a>	
-		</c:forEach>
-		<c:if test="${pageMaker.next}">
-			<a href="${pageMaker.endPage +1 }">[다음페이지]</a>
-		</c:if>
-	</div>
+	
+	
+<ul class="pagination pagination-sm">
+	<c:if test="${pageMaker.prev }">
+		<li class="page-item"><a href="${pageMaker.startPage-1 }" class="page-link">이전페이지</a></li>
+	</c:if>
+<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="pageNum">
+		<li class="page-item ${param.page == pageNum ? 'active' : '' }">
+			<a href="${pageNum}" class="page-link">${pageNum}</a>
+		</li>
+	</c:forEach>
+	<c:if test="${pageMaker.next }">
+	<li class="page-item">
+		<a href="${pageMaker.endPage+1 }" class="page-link">다음페이지</a>
+	</li>
+	</c:if>
+</ul>
+	
 </div>
 <%@ include file="../layout/footer.jspf" %>
 
@@ -113,9 +121,10 @@ $(function(){
 	
 	
 	
+	
+	
 })
 </script>
 <style>
 .on {font-weight: 700; color:red;}
-
 </style>

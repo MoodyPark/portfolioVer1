@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jspf" %>
 
-<div class="container">
+<div class="container logn_area">
 	<div class="loginForm my-5">
 		<h2>로그인 페이지</h2>
 		<div class="error">
@@ -31,6 +31,8 @@
 </div>
 <%@ include file="../layout/footer.jspf" %>
 <style>
-	.loginForm {width: 400px; margin:auto;}
+	.logn_area.container { height: 100%; }
+	.loginForm {width: 400px; margin: auto;   transform : translateY(162px) }
+	footer{position:  absolute; bottom:0; width: 100%}
 </style>
 

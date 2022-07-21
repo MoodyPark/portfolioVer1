@@ -35,6 +35,7 @@
  	<result property="updateDate" column="updateDate" />
  	<result property="replyCnt" column="replyCnt" />
  	<result property="viewCount" column="viewCount" />
+ 	<result property="likeHit" column="likeHit" />
  	<collection property="attachList" column="bno" javaType="java.util.ArrayList" 
  	ofType="me.light.model.BoardAttachVO" select="attachList"/>
  </resultMap>
@@ -88,7 +89,7 @@
   <update id="addViewCount">
   	update board_tbl set viewCount = viewCount + 1
   	where bno = #{bno} 
-  
   </update>
+  
   
 </mapper>

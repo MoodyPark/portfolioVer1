@@ -49,6 +49,12 @@ public class BoardController {
 		return "board/list";
 	}
 	
+	@GetMapping("/notices")
+	public String notices() {
+		return "board/notices";
+	}
+	
+	
 	@GetMapping("/get")
 	public String get(Long bno, Model model,
 			@CookieValue(required = false) Cookie viewCount, 
@@ -137,7 +143,6 @@ public class BoardController {
 					Files.deleteIfExists(thumbNail);
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
 			}
 			
 		});

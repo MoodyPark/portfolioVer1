@@ -8,9 +8,6 @@ import me.light.exception.NotMatchUserIdException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
-	@ExceptionHandler(NotMatchUserIdException.class)
-	public String notMatchUserId() {
-		System.out.println("NotMatchUserIdException 예외 발생");
-		return "member/myPage_error";
-	}
+
+
 }

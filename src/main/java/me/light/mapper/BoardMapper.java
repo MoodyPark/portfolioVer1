@@ -20,7 +20,9 @@ public interface BoardMapper {
 		@Param("amount") int amount
 	);
 	void addViewCount(Long bno);
+	void addLikeCount(Long bno); 
 	
+	List<BoardAttachVO> attachList(Long bno);
+
 	
-	List<BoardAttachVO> attachList(Long bno); 
 }

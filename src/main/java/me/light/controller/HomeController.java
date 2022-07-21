@@ -11,7 +11,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home(HttpServletResponse response) {
-		Cookie cookie = new Cookie("myCookie","유감입니다.");
+		Cookie cookie = new Cookie("myCookie","쿠키");
 		cookie.setMaxAge(60*60*24);
 		response.addCookie(cookie);
 		return "home";
@@ -19,7 +19,7 @@ public class HomeController {
 	
 	@GetMapping("/test")
 	public String test(HttpServletResponse response) {
-		Cookie cookie = new Cookie("myCookie","유감입니다.");
+		Cookie cookie = new Cookie("myCookie","쿠키");
 		cookie.setMaxAge(60*60*24);
 		response.addCookie(cookie);
 		return "test";

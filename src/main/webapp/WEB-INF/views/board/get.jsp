@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jspf" %>
 <script src="${contextPath}/resources/js/get.js"></script>
-<sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal.username" var="userId" />
-</sec:authorize>
 
 <div class="container">
 	
@@ -17,6 +14,9 @@
 	<form id="getForm">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<input type="hidden" name="bno" value="${board.bno}">
+		<sec:authorize access="isAuthenticated()">
+			<sec:authentication property="principal.username" var="userId" />
+		</sec:authorize>
 		<div>
 			<h3>${board.title }</h3>
 			<p>작성자 : ${board.writer }</p>
@@ -30,12 +30,14 @@
 				조회수 : ${board.viewCount}
 			</p>
 			<p>${board.content}</p>
+			<p>현재 추천수 :${board.likeHit}</p>
 		</div>
 		<c:if test="${userId eq board.writer}">
 			<button class="btn btn-warning modify">수정</button>
 			<button class="btn btn-danger remove">삭제</button>
 		</c:if>
 		<button class="btn btn-primary list">목록</button>
+		<button  type="button" class="btn like"><img alt="" src="${contextPath}/resources/img/like.PNG" height="40px" width="60px"></button>
 	</form>
 	
 	<div class="row my-5">
@@ -118,7 +120,9 @@
 </div>
 
 <script>
-
+let bno = $('input[name="bno"]').val();
+let userId = "${userId}";
+console.log(contextPath)
 $(function(){	
 	let getForm = $("#getForm");
 	$('#getForm .list').on('click',function(){ // 목록페이지
@@ -139,8 +143,33 @@ $(function(){
 		getForm.attr("action","remove");
 		getForm.submit();
 	});
+	 $('#getForm .like').on('click', function(){ // 추천 버튼
+		 
+	     $.ajax({
+	            type : "POST",  
+	            url : contextPath+ "/board/updateLike",       
+	            dataType : "json",   
+	            data : {'bno' : bno, 'userId' : userId},
+	            error : function(){
+	               alert("통신 에러");
+	            },
+	            beforeSend : function(xhr){
+	            				xhr.setRequestHeader(csrfHeaderName,csrfTokenName)
+	            			}, 
+	            success : function(likeCheck) {
+	                    if(likeCheck == 0){
+	                    	alert("추천완료.");
+	                    	location.reload();
+	                    }
+	                    else if (likeCheck == 1){
+	                     alert("추천취소");
+	                    	location.reload();
+	                }
+	            }
+	        });
+	}) 
 	
-	let bno = $('input[name="bno"]').val();
+
 	
 })
 
@@ -149,9 +178,6 @@ $(function(){
 	// 목록 테스트 
 	let bnoValue = $('input[name="bno"]').val();
 	replyService.getList({bno:bnoValue},function(list){
-		for(let reply of list){
-			console.log(reply)
-		}
 	})
 })
 
@@ -161,11 +187,11 @@ $(function(){
 		replyService.update({
 			rno : 4, 
 			bno : 1, 
-			reply : "댓글 내용을 수정합니다......" 
+			reply : "댓글 내용을 수정합니다." 
 		},function(result){
 			alert(result)
 		})	
-	}
+	} 
 	
 	function deleteTest(){
 		replyService.remove(4, function(result){
@@ -175,6 +201,7 @@ $(function(){
 		})
 	}
 })
+
 
 </script>
 <%@ include file="../layout/footer.jspf" %>
